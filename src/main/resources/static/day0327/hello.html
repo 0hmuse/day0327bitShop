@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+    $("#btnAjax").click(function(){
+        $.ajax("/hello.do",{success:function(data){
+            var msg = data;
+            $("#msg").text(msg);
+        }})
+    })
+})
+</script>
+</head>
+<body>
+    <button id="btnAjax">ajax통신</button>
+    <h2 id="msg"></h2>
+    <a href="detail.html?no=10">상세보기</a>
+</body>
+</html>

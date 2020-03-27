@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <link rel="stylesheet" type="text/css" href="Goods.css">
+    <style type="text/css">
+
+    </style>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#addGoods").click(function () {
+                var insertGoods = new FormData(document.getElementById("insertForm"));
+                $.ajax("/insertGoods", {
+                    data: insertGoods,
+                    processData:false,
+                    contentType:false,
+                    type:"post",
+                    success: function (result) {
+                        alert(result);
+                    }
+                })
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <div id="top">
+        <h2>(주)그린 컴퓨터 아트몰</h2>
+    </div>
+    <div id="menu">
+        <ul id="menuList">
+            <li id="goodsList">
+                <a href="listGoods.html">상품목록</a>
+            </li>
+            <li id="goodsAdd">
+                <a href="insertGoods.html">상품등록</a>
+            </li>
+        </ul>
+    </div>
+    <div id="container">
+        <form id="insertForm" method="post" enctype="multipart/form-data">
+            <table>
+                <tr>
+                    <td>
+                        <label for="item">상품명</label>
+                    </td>
+                    <td>
+                        <input type="text" id="item" name="item">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="item">수량</label>
+                    </td>
+                    <td>
+                        <input type="number" id="qty" name="qty">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="item">가격</label>
+                    </td>
+                    <td>
+                        <input type="number" id="price" name="price">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="uploadFile">사진</label>
+                    </td>
+                    <td>
+                        <input type="file" id="uploadFile" name="uploadFile">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="detail">상세설명</label>
+                    </td>
+                    <td>
+                        <textarea name="detail" id="detail" cols="40" rows="10"></textarea>
+                    </td>
+                </tr>
+            </table>
+            <button id="addGoods">상품등록</button>
+        </form>
+    </div>
+    <div id="footer">
+        <h3>(주)그린컴퓨터 아트학원</h3>
+    </div>
+</body>
+
+</html>

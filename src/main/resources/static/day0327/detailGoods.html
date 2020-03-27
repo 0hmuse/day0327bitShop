@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="Goods.css">
+<style type="text/css">
+
+</style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        var no = location.search;
+        no = no.substring(no.indexOf("=")+1);
+        var g = {no:no};
+        var table = $("<table></table>");
+        var tr = $("<tr></tr>");
+        $.ajax("/detailGoods",{data:g, success:function(data){
+            var img = $("<img/>").attr("src","img/"+data.fname);
+            var td1 = $("<td></td>");
+            var td2 = $("<td></td>");
+            var item = $("<p></p>").text(data.item);
+            var qty = $("<p></p>").text(data.qty);
+            var price = $("<p></p>").text(data.price+"원");
+            var detail = $("<p></p>").text(data.detail);
+            $(td1).append(img);
+            $(td2).append(item,qty,price,detail);
+            $(tr).append(td1,td2);
+            $(table).append(tr);
+            $("#container").append(table);
+        }});
+
+    })
+</script>
+</head>
+<body>
+    <div id="top">
+        <h2>(주)그린 컴퓨터 아트몰</h2>
+    </div>
+    <div id="menu">
+        <ul id="menuList">
+            <li id="goodsList">
+                <a href="listGoods.html">상품목록</a>
+            </li>
+            <li id="goodsAdd">
+                <a href="insertGoods.html">상품등록</a>
+            </li>
+        </ul>
+    </div>
+    <div id="container">
+    </div>
+    <div id="footer">
+        <h3>(주)그린컴퓨터 아트학원</h3>
+    </div>
+</body>
+</html>
